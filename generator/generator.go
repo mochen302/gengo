@@ -20,9 +20,9 @@ import (
 	"bytes"
 	"io"
 
-	"k8s.io/gengo/namer"
-	"k8s.io/gengo/parser"
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/namer"
+	"github.com/mochen302/gengox/parser"
+	"github.com/mochen302/gengox/types"
 )
 
 // Package contains the contract for generating a package.

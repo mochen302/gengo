@@ -23,10 +23,10 @@ package marker
 import (
 	"encoding/json"
 
+	external "github.com/mochen302/gengox/examples/defaulter-gen/_output_tests/marker/external"
+	externalexternal "github.com/mochen302/gengox/examples/defaulter-gen/_output_tests/marker/external/external"
 	v1 "k8s.io/api/core/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
-	external "k8s.io/gengo/examples/defaulter-gen/_output_tests/marker/external"
-	externalexternal "k8s.io/gengo/examples/defaulter-gen/_output_tests/marker/external/external"
 )
 
 // RegisterDefaults adds defaulters functions to the given scheme.

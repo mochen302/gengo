@@ -28,14 +28,14 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 
-	"k8s.io/gengo/args"
-	"k8s.io/gengo/namer"
-	"k8s.io/gengo/parser"
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/args"
+	"github.com/mochen302/gengox/namer"
+	"github.com/mochen302/gengox/parser"
+	"github.com/mochen302/gengox/types"
 )
 
 func TestRecursive(t *testing.T) {
-	dir := "k8s.io/gengo/testdata/a"
+	dir := "github.com/mochen302/gengox/testdata/a"
 	d := args.Default()
 	d.InputDirs = []string{dir + "/..."}
 	b, err := d.NewBuilder()
@@ -50,10 +50,10 @@ func TestRecursive(t *testing.T) {
 	foundC := false
 	for _, p := range b.FindPackages() {
 		t.Logf("Package: %v", p)
-		if p == "k8s.io/gengo/testdata/a/b" {
+		if p == "github.com/mochen302/gengox/testdata/a/b" {
 			foundB = true
 		}
-		if p == "k8s.io/gengo/testdata/a/c" {
+		if p == "github.com/mochen302/gengox/testdata/a/c" {
 			foundC = true
 		}
 	}
@@ -63,8 +63,7 @@ func TestRecursive(t *testing.T) {
 	if foundC {
 		t.Error("Did not expect to find package c")
 	}
-	if name := findTypes[dir].Types["AA"].Methods["AFunc"].Name.Name;
-		name != "func (*k8s.io/gengo/testdata/a.AA).AFunc(i *int, j int) (*k8s.io/gengo/testdata/a.A, k8s.io/gengo/testdata/a/b.ITest, error)" {
+	if name := findTypes[dir].Types["AA"].Methods["AFunc"].Name.Name; name != "func (*github.com/mochen302/gengox/testdata/a.AA).AFunc(i *int, j int) (*github.com/mochen302/gengox/testdata/a.A, github.com/mochen302/gengox/testdata/a/b.ITest, error)" {
 		t.Errorf("Parse method type error, got name: %s", name)
 	}
 	// only has three package: package "a", package "b", and package "" for all
@@ -76,7 +75,7 @@ func TestRecursive(t *testing.T) {
 func TestRecursiveWithTestGoFiles(t *testing.T) {
 	d := args.Default()
 	d.IncludeTestFiles = true
-	d.InputDirs = []string{"k8s.io/gengo/testdata/a/..."}
+	d.InputDirs = []string{"github.com/mochen302/gengox/testdata/a/..."}
 	b, err := d.NewBuilder()
 	if err != nil {
 		t.Fatalf("Fail making builder: %v", err)
@@ -89,10 +88,10 @@ func TestRecursiveWithTestGoFiles(t *testing.T) {
 	foundC := false
 	for _, p := range b.FindPackages() {
 		t.Logf("Package: %v", p)
-		if p == "k8s.io/gengo/testdata/a/b" {
+		if p == "github.com/mochen302/gengox/testdata/a/b" {
 			foundB = true
 		}
-		if p == "k8s.io/gengo/testdata/a/c" {
+		if p == "github.com/mochen302/gengox/testdata/a/c" {
 			foundC = true
 		}
 	}

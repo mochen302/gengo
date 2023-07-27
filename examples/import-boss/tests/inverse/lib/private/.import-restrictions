@@ -2,10 +2,10 @@
    "InverseRules": [{
        "SelectorRegexp": "k8s[.]io/gengo",
        "AllowedPrefixes": [
-         "k8s.io/gengo/examples/import-boss/tests/inverse/lib"
+         "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib"
        ],
        "ForbiddenPrefixes": [
-         "k8s.io/gengo/examples/import-boss/tests/inverse/lib/quarantine"
+         "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib/quarantine"
        ]
    }]
 }

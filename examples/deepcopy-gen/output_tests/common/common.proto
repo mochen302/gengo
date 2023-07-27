@@ -1,0 +1,293 @@
+syntax = "proto3";
+
+option go_package = "golang.garena.com/astrena/astrena-services/internal/protocol/common";
+package common;
+
+message Empty {
+}
+
+message PlayerLogoutReq {
+    uint64 account_id = 1;
+    uint64 conn_id = 2;
+}
+
+message MatchClientInfo {
+    string tpsdk_str = 1;
+    uint32 start_time = 2;
+    bytes file_exception = 3;
+    bytes lib_result = 4;
+    uint32 exception_count = 5;
+    uint32 scan_count = 6;
+    bytes native_result = 7;
+    string client_version = 8;
+    uint32 channel_type = 9;
+    uint32 architecture_type = 10;
+}
+
+message AccountMatchInfo {
+    uint64 account_id = 1;
+    string nickname = 2;
+    string lock_region = 3;
+    uint32 level = 4;
+    uint32 avatar_id = 5;
+}
+
+message Gameserver2ServicePkg{
+    reserved 4, 5, 7;
+    EGameServerManager.Proto cmd = 1;
+    uint32 match_mode = 2;
+    uint64 account_id = 3;
+    // uint64 real_group_id = 4;
+    // uint64 auto_group_id = 5;
+    bytes data = 6;
+    // uint32 room_id = 7;
+    uint64 group_id = 8;
+    uint64 pre_group_id = 9;
+    uint64 match_id = 10;  //gs room id
+    uint64 room_id = 11;  //for workshop room
+    int64 sent_ts = 12; // timestamp of this msg sent from gs
+}
+
+message MatchPrepareInfo {
+    uint64 account_id = 1;
+    string nickname = 2;
+    uint32 level = 3;
+    uint32 avatar_id = 4;
+    uint64 match_id = 5;
+    uint32 wait_join_time = 6;
+    string lock_region = 7;
+    string noti_region = 8;
+    EMatch.MatchMode match_mode = 9;
+    uint32 map_id = 10;
+    EMatch.GameMode game_mode = 11;
+}
+
+message GSPrepareInfo {
+    EMatch.MatchMode match_mode = 1;
+    EMatch.GameMode game_mode = 2;
+    uint32 map_id = 3;
+    uint64 match_id = 4;
+    repeated GSPlayerPrepareInfo gs_player_prepare_infos = 5;
+}
+
+message GSPlayerPrepareInfo {
+    uint64 account_id = 1;
+    string nickname = 2;
+    uint32 level = 3;
+    uint32 avatar_id = 4;
+    string lock_region = 5;
+    string noti_region = 6;
+}
+
+
+message MatchPregameInfo {
+    uint64 account_id = 1;
+    string nickname = 2;
+    uint32 avatar_id = 3;
+}
+
+message FindGameServerExtraInfo {
+    uint32 ai_cnt_per_game = 1;
+    bool is_bot = 2;
+}
+
+message MessageNotify {
+    uint64 account_id = 1;
+    uint32 protocol = 2;
+    uint32 ret = 3;
+    uint32 cmd = 4;
+    bytes content = 5;
+}
+
+message MessageNotifySlice {
+    repeated MessageNotify msgs = 1;
+}
+
+message AccountIDReq {
+    uint64 account_id = 1;
+}
+
+message AccountIDRes {
+    uint64 account_id = 1;
+}
+
+message AccountIDSlice {
+    repeated uint64 account_ids = 1;
+}
+
+message ExternalIDSlice {
+    repeated string external_ids = 1;
+    EAccount.PlatformType platform_type = 2;
+}
+
+message AccountRegionSlice {
+    uint64 account_id = 1;
+    string noti_region = 2;
+    string lock_region = 3;
+}
+
+message OpenIDReq {
+    string open_id = 1;
+}
+
+message NicknameReq {
+    string nickname = 1;
+}
+
+message MatchIDReq {
+    uint64 match_id = 1;
+}
+
+message EGameServer {
+    enum Proto {
+        Proto_NONE = 0;
+        Proto_START_GAMESERVER = 1;
+        Proto_JOIN_GAMESERVER = 2;
+        Proto_NOTI_DROP_MATCH = 3;
+    }
+
+    enum ServerStatus {
+        ServerStatus_NONE = 0;
+        ServerStatus_RUNNING = 1;
+        ServerStatus_SOFTCLOSED = 2;
+        ServerStatus_DOWN = 3;
+        ServerStatus_OVERLOADED = 4;
+    }
+    enum ServerType {
+        ServerType_NONE = 0;
+        ServerType_NORMAL = 1;
+    }
+}
+
+message EGameServerManager {
+    enum Proto {
+        Proto_NONE = 0;
+        Proto_REPORT = 1;
+        Proto_PLAYERLOGIN = 2;
+        Proto_PLAYERLOGOUT = 3;
+        Proto_ENDMATCH = 4;
+        Proto_CUSTOMROOM_MATCHSTATS = 5;
+        Proto_UPDATE_INGAMEITEMS = 6;
+        Proto_GS_READY = 7; // GS Resource Ready
+        Proto_UGC_DEBUG_GS_READY = 8;
+        Proto_GS_START_GAME_READY = 9;
+        Proto_GS_JOIN_READY = 10;
+        Proto_GS_CLOSE_GAME = 11;
+    }
+
+    enum ErrCode {
+        ErrCode_SUSS = 0;
+        ErrCode_ROOMFULL = 8;
+    }
+
+    enum HandleGSLoad {
+        HandleGSLoad_NONE = 0;
+        HandleGSLoad_UPDATE = 1;
+        HandleGSLoad_DELETE = 2;
+    }
+
+    enum NotifyGameServerType {
+        NotifyGameServerType_NONE = 0;
+        NotifyGameServerType_DROP_MATCH = 1;
+        NotifyGameServerType_PUNISH_PLAYER = 2;
+    }
+}
+
+message EMatch {
+    enum MatchMode {
+        MatchMode_NONE = 0;
+        MatchMode_CASUAL = 1;
+    }
+
+    enum GameMode {
+        GameMode_NONE = 0;
+        GameMode_CASCUAL = 1;
+    }
+
+    enum GroupMode {
+        GroupMode_SOLO = 0;
+    }
+}
+
+message EAccount {
+    enum PlatformType {
+        PlatformType_VISITOR = 0;
+        PlatformType_GAS = 1;
+        PlatformType_BEETALK = 2;
+        PlatformType_GAFACEBOOK = 3;
+        PlatformType_GAGUEST = 4;
+        PlatformType_VK = 5;
+        PlatformType_FACEBOOK = 6;
+        PlatformType_HUAWEI = 7;
+        PlatformType_GOOGLE = 8;
+        PlatformType_XXX = 9;
+        PlatformType_APPLE = 10;
+        PlatformType_TWITTER = 11;
+        PlatformType_ASTRENA = 12;
+        // we use 100 to identify deleted account
+        PlatformType_DELETE = 100;
+        PlatformType_CHANGE_ACCOUNT = 101;
+    }
+
+    //store by bit in accountInfo
+    enum Role {
+        Role_NONE = 0;
+        Role_GM = 1;
+        Role_CONTESTANT = 2;  // for room
+        Role_STREAMER = 4;
+        Role_REPLAY = 8;
+        Role_ROOMMASTER = 16;
+        Role_ROOMPARTNER = 32;
+        Role_PERSONAGE = 64; // for Celebrity
+        Role_COMPANY = 128; // for Celebrity
+        Role_PREPARATION = 256; // for Celebrity
+        Role_UGC = 512;
+    }
+
+    enum LoginType {
+        LoginType_NORMAL = 0;
+        LoginType_DEBUG_ACCOUNT_ID = 1;
+        LoginType_DEBUG_NICKNAME = 2;
+    }
+}
+
+message ECreatePlayer {
+    enum ErrCode{
+        ErrCode_NORMAL = 0;
+        ErrCode_NEGATIVE_GEMS = 1;
+        ErrCode_CSRANKING_BANNED = 2;
+        ErrCode_RANKING_BANNED = 3;
+        ErrCode_GROUP_BANNED = 4;
+    }
+}
+
+message EProtocol {
+    enum Proto {
+        Proto_NONE = 0;
+        INIT = 1;
+        HEARTBEAT = 2;
+        MATCHMAKING = 3;
+    }
+
+    enum ProtoSize {
+        ProtoSize_NONE = 0;
+        MAXPACKETSIZE = 20480;
+        MAXMTPPACKETSIZE = 10240; //1024*10
+        MAXUGCDEBUGPACKETSIZE = 1048576; //1024*1024
+    }
+}
+
+message PlatformRegisterReq {
+    string nickname = 1;
+    string open_id = 2;
+    string region = 3;
+    uint32 avatar_id = 4;
+    uint32 platform_type = 5; //platfrom type,1:gas;2:beetalk,3:garena-facebook,4:garena-gust,5:vk
+}
+
+message PlatformRegisterRes {
+    bool success = 1;
+    string reason = 2;
+    uint64 account_id = 3;
+    string nickname = 4;
+}

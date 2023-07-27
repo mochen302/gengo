@@ -2,5 +2,5 @@
 package d
 
 import (
-	_ "k8s.io/gengo/examples/import-boss/tests/inverse/lib/nonprod"
+	_ "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib/nonprod"
 )

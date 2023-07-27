@@ -1,5 +1,5 @@
 package inherit
 
 import (
-	_ "k8s.io/gengo/examples/import-boss/tests/rules/c"
+	_ "github.com/mochen302/gengox/examples/import-boss/tests/rules/c"
 )

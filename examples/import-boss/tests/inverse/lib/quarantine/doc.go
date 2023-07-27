@@ -2,5 +2,5 @@
 package quarantine
 
 import (
-	_ "k8s.io/gengo/examples/import-boss/tests/inverse/lib/private"
+	_ "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib/private"
 )

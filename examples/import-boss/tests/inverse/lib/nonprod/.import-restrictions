@@ -3,7 +3,7 @@
        "Transitive": true,
        "SelectorRegexp": "k8s[.]io/gengo",
        "AllowedPrefixes": [
-         "k8s.io/gengo/examples/import-boss/tests/inverse/lib"
+         "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib"
        ]
    }]
 }

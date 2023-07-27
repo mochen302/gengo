@@ -33,7 +33,7 @@ import (
 	"sort"
 	"strings"
 
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/types"
 	"k8s.io/klog/v2"
 )
 

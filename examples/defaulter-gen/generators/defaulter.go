@@ -27,10 +27,10 @@ import (
 	"strconv"
 	"strings"
 
-	"k8s.io/gengo/args"
-	"k8s.io/gengo/generator"
-	"k8s.io/gengo/namer"
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/args"
+	"github.com/mochen302/gengox/generator"
+	"github.com/mochen302/gengox/namer"
+	"github.com/mochen302/gengox/types"
 
 	"k8s.io/klog/v2"
 )

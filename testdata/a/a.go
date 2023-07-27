@@ -16,7 +16,7 @@ limitations under the License.
 
 package a
 
-import "k8s.io/gengo/testdata/a/b"
+import "github.com/mochen302/gengox/testdata/a/b"
 
 // A is a type for testing.
 type A string

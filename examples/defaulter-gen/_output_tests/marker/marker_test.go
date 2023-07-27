@@ -20,8 +20,8 @@ import (
 	"reflect"
 	"testing"
 
-	external1 "k8s.io/gengo/examples/defaulter-gen/_output_tests/marker/external"
-	external2 "k8s.io/gengo/examples/defaulter-gen/_output_tests/marker/external/external"
+	external1 "github.com/mochen302/gengox/examples/defaulter-gen/_output_tests/marker/external"
+	external2 "github.com/mochen302/gengox/examples/defaulter-gen/_output_tests/marker/external/external"
 )
 
 func getPointerFromString(s string) *string {

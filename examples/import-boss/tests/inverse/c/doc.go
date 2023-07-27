@@ -3,5 +3,5 @@
 package c
 
 import (
-	_ "k8s.io/gengo/examples/import-boss/tests/inverse/lib"
+	_ "github.com/mochen302/gengox/examples/import-boss/tests/inverse/lib"
 )

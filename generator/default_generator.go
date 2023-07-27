@@ -19,8 +19,8 @@ package generator
 import (
 	"io"
 
-	"k8s.io/gengo/namer"
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/namer"
+	"github.com/mochen302/gengox/types"
 )
 
 const (

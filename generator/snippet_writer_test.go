@@ -21,9 +21,9 @@ import (
 	"strings"
 	"testing"
 
-	"k8s.io/gengo/generator"
-	"k8s.io/gengo/namer"
-	"k8s.io/gengo/parser"
+	"github.com/mochen302/gengox/generator"
+	"github.com/mochen302/gengox/namer"
+	"github.com/mochen302/gengox/parser"
 )
 
 func construct(t *testing.T, files map[string]string) *generator.Context {

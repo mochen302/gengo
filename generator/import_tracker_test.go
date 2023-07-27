@@ -20,7 +20,7 @@ import (
 	"reflect"
 	"testing"
 
-	"k8s.io/gengo/types"
+	"github.com/mochen302/gengox/types"
 )
 
 func TestNewImportTracker(t *testing.T) {

@@ -57,8 +57,8 @@ limitations under the License.
 package main
 
 import (
-	"k8s.io/gengo/args"
-	"k8s.io/gengo/examples/deepcopy-gen/generators"
+	"github.com/mochen302/gengox/args"
+	"github.com/mochen302/gengox/examples/deepcopy-gen/generators"
 
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
@@ -75,6 +75,10 @@ func main() {
 	customArgs := &generators.CustomArgs{}
 	pflag.CommandLine.StringSliceVar(&customArgs.BoundingDirs, "bounding-dirs", customArgs.BoundingDirs,
 		"Comma-separated list of import paths which bound the types for which deep-copies will be generated.")
+	pflag.CommandLine.StringSliceVar(&customArgs.FieldSkipTypes, "field-skip-types", customArgs.FieldSkipTypes,
+		"choose which field should by skip like xxx.pb.go(state         protoimpl.MessageState) can set google.golang.org/protobuf/internal/impl.MessageState or google.golang.org/protobuf/internal/impl")
+	pflag.CommandLine.StringSliceVar(&customArgs.FieldSkipNames, "field-skip-names", customArgs.FieldSkipNames,
+		"choose which field should by skip like xxx.pb.go(unknownFields protoimpl.UnknownFields) can set  unknownFields")
 	arguments.CustomArgs = customArgs
 
 	// Run it.

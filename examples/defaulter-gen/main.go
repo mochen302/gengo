@@ -42,8 +42,8 @@ limitations under the License.
 package main
 
 import (
-	"k8s.io/gengo/args"
-	"k8s.io/gengo/examples/defaulter-gen/generators"
+	"github.com/mochen302/gengox/args"
+	"github.com/mochen302/gengox/examples/defaulter-gen/generators"
 
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"

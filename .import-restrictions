@@ -3,7 +3,7 @@
     {
       "SelectorRegexp": "k8s[.]io",
       "AllowedPrefixes": [
-        "k8s.io/gengo",
+        "github.com/mochen302/gengox",
         "k8s.io/klog",
         "sigs.k8s.io/yaml"
       ]
