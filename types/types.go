@@ -452,6 +452,10 @@ var (
 		Name: Name{Name: "int32"},
 		Kind: Builtin,
 	}
+	Rune = &Type{
+		Name: Name{Name: "rune"},
+		Kind: Builtin,
+	}
 	Int16 = &Type{
 		Name: Name{Name: "int16"},
 		Kind: Builtin,
@@ -508,6 +512,7 @@ var (
 			"int":     Int,
 			"int64":   Int64,
 			"int32":   Int32,
+			"rune":    Rune,
 			"int16":   Int16,
 			"int8":    Byte,
 			"uint":    Uint,
@@ -529,7 +534,7 @@ var (
 
 func IsInteger(t *Type) bool {
 	switch t {
-	case Int, Int64, Int32, Int16, Uint, Uint64, Uint32, Uint16, Byte:
+	case Int, Int64, Int32, Rune, Int16, Uint, Uint64, Uint32, Uint16, Byte:
 		return true
 	default:
 		return false
