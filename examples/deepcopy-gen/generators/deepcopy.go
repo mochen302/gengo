@@ -989,5 +989,12 @@ func (g *genDeepCopy) needFilterField(ft *types.Type) bool {
 		return true
 	}
 
+	for k := range g.fieldSkipTypes {
+		if strings.Contains(ft.Name.Package, k) {
+			klog.Infof("skip type name:%v package:%v by package:%v", ft.Name.Name, ft.Name.Package, k)
+			return true
+		}
+	}
+
 	return false
 }
